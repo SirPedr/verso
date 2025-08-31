@@ -2,13 +2,18 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
 import Post from "../components/post/post.astro";
+import { sortByDate } from "../lib/sort-by-date/sort-by-date";
+
 const posts = await getCollection("posts");
+const sortedPosts = posts.sort((firstPost, secondPost) =>
+  sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
+);
 ---
 
 <BaseLayout title="Verso">
   <section>
     {
-      posts.map((post) => (
+      sortedPosts.map((post) => (
         <Post
           to={`/posts/${post.id}`}
           title={post.data.title}
