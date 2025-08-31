@@ -1,32 +1,26 @@
-# Astro Starter Kit: Basics
+# Verso
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+A personal blog built with Astro and deployed on Cloudflare Pages, featuring creative writing, poetry, and musical compositions. Verso is a minimalist platform for sharing thoughts, reflections, and artistic expressions with themes of solitude, anguish, and the search for meaning.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🎭 About
 
-## 🚀 Project Structure
+Verso is a personal blog where the author shares thoughts, ideas, and reflections through various forms of creative expression. The content primarily consists of song lyrics, poetry, and prose, with recurring themes of:
 
-Inside of your Astro project, you'll see the following folders and files:
+- Solitude and introspection
+- Existential questioning  
+- Love and loss
+- The search for meaning
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+The author not only writes the content but also produces, records, and edits music. The complete musical catalog is available on [Spotify](https://open.spotify.com/artist/12gx0QmLO32NlSJiEIJaYo?si=rVroaY0nQ3qaixLYkUqXaw).
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🏗️ Technical Stack
+
+- **Framework**: [Astro](https://astro.build/) v5.13.5
+- **Runtime**: Node.js with TypeScript
+- **Deployment**: Cloudflare Pages with Workers
+- **Package Manager**: pnpm
+- **Styling**: Vanilla CSS
+- **Fonts**: Inter Variable (UI), Newsreader Variable (headings)
 
 ## 🧞 Commands
 
@@ -40,7 +34,3 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm preview`         | Preview your build locally, before deploying     |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
