@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/base-layout.astro";
+---
+
+<BaseLayout title="Sobre (Verso)">
+  <h1>Sobre</h1>
+  <p>
+    Verso é um blog pessoal no qual compartilho meus pensamentos, ideias e
+    reflexões. Solidão, angústia e busca por significado são temas recorrentes
+    em tudo o que eu escrevo.
+  </p>
+  <p>
+    A maior parte do que tem por aqui são letras de músicas. Não só escrevo as
+    letras como também produzo, gravo e edito. O catálogo completo está
+    disponível no meu perfil do Spotify logo abaixo.
+  </p>
+  <a
+    href="https://open.spotify.com/artist/12gx0QmLO32NlSJiEIJaYo?si=rVroaY0nQ3qaixLYkUqXaw"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Spotify
+  </a>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 3rem;
+  }
+  p,
+  a {
+    line-height: 1.5;
+    color: var(--content-color-primary);
+  }
+</style>
