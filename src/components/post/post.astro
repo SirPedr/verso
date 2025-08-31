@@ -1,0 +1,63 @@
+---
+interface Props {
+  to: string;
+  title: string;
+  description: string;
+  date: Date;
+}
+
+const { to, title, description, date } = Astro.props as Props;
+---
+
+<a href={to}>
+  <div>
+    <h2>{title}</h2>
+    <time datetime={date.toISOString()}>
+      {
+        date.toLocaleDateString("pt-BR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })
+      }
+    </time>
+  </div>
+  <p>{description}</p>
+</a>
+
+<style>
+  a,
+  a:visited {
+    display: block;
+    color: var(--content-color-primary);
+    text-decoration: none;
+    font-family: "Newsreader", serif;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    margin: 0;
+    color: var(--content-color-secondary);
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  time {
+    color: var(--content-color-tertiary);
+    font-size: 0.75rem;
+    min-width: fit-content;
+    padding-left: 16px;
+  }
+</style>

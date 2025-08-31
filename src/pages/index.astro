@@ -1,23 +1,39 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
-const posts = await getCollection("posts")
+import Post from "../components/post/post.astro";
+const posts = await getCollection("posts");
 ---
 
 <BaseLayout title="Verso">
-  {posts.map((post) => (
-    <a href={`/posts/${post.id}`}>
-      <div>
-        <h2>{post.data.title}</h2>
-        <p>{post.data.description}</p>
-      </div>
-    </a>
-  ))}
+  <section>
+    {
+      posts.map((post) => (
+        <Post
+          to={`/posts/${post.id}`}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.launch_date}
+        />
+      ))
+    }
+  </section>
 </BaseLayout>
 
 <style>
   div {
     border: 1px solid red;
     margin-bottom: 16px;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    a:not(:last-child) {
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
   }
 </style>
