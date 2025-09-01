@@ -3,11 +3,18 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
 import Post from "../components/post/post.astro";
 import { sortByDate } from "../lib/sort-by-date/sort-by-date";
+import { filterByQueryTrigger } from "../lib/filter-by-query-trigger/filter-by-query-trigger";
 
+export const prerender = false;
+
+const searchParams = Astro.url.searchParams;
 const posts = await getCollection("posts");
-const sortedPosts = posts.sort((firstPost, secondPost) =>
-  sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
-);
+
+const sortedPosts = posts
+  .filter((post) => filterByQueryTrigger(post, searchParams))
+  .sort((firstPost, secondPost) =>
+    sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
+  );
 ---
 
 <BaseLayout title="Verso">

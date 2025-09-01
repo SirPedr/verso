@@ -2,6 +2,7 @@
 title: "Vera"
 description: "Ele se lembra de Vera. Se lembra dela todos os dias. Quando disse que se veriam de novo, ele acreditou."
 launch_date: 2025-08-31
+query_trigger: "vera"
 ---
 Ele se lembra de Vera. Se lembra dela todos os dias desde a juventude, quando a conheceu pela primeira vez. Desde que ela o convenceu de que ficaria tudo bem. Ela falava com confiança, mas com ternura. Naquela época, Vera era tudo o que ele procurava e tudo o que ele nem sabia que procurava. Ela estava lá quando ninguém mais parecia estar e prometeu nunca abandoná-lo. Mesmo quando ele se afastou, ela disse que se encontrariam de novo.
 
