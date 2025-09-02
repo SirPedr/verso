@@ -1,7 +1,7 @@
 ---
 title: "Dentre as perfeições inalcançáveis, o amor é a pior delas"
 description: "Porque o amor é o desejo daquilo que nunca será obtido"
-launch_date: 2025-09-01
+launch_date: 2025-08-30
 ---
 E o amor há de perecer\
 Não vai mais caminhar\
