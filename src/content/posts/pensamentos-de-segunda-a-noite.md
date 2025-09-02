@@ -1,7 +1,7 @@
 ---
 title: "Pensamentos de segunda feira à noite"
 description: "Às vezes as pessoas realmente não mudam, e eu começo a achar que sou uma delas."
-launch_date: 2025-09-02
+launch_date: 2025-09-01
 ---
 
 Tô escrevendo isso enquanto a água tá fervendo. Não sei se termino de escrever tudo que quero até lá, mas vou fazer o que der.
