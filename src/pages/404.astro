@@ -14,16 +14,21 @@ import BaseLayout from "../layouts/base-layout.astro";
 <style>
   h1 {
     text-align: center;
-    font-size: 8rem;
+    font-size: clamp(5rem, 18vw, 9rem);
+    font-weight: 600;
+    color: var(--title-color);
     margin-bottom: 0;
+    letter-spacing: -0.02em;
   }
 
   h2 {
     text-align: center;
-    font-size: 2rem;
-    font-weight: 200;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: var(--text-heading);
+    font-weight: 400;
     margin-top: 0;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
     color: var(--content-color-secondary);
   }
 
@@ -31,7 +36,8 @@ import BaseLayout from "../layouts/base-layout.astro";
     max-width: 30rem;
     margin: 0 auto;
     text-align: center;
-    line-height: 1.5;
+    line-height: var(--leading-body);
+    color: var(--content-color-secondary);
   }
 
   @media screen and (min-width: 768px) {

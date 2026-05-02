@@ -25,11 +25,20 @@ import BaseLayout from "../layouts/base-layout.astro";
 
 <style>
   h1 {
-    font-size: 3rem;
+    font-size: var(--text-display);
+    color: var(--title-color);
+    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem;
   }
-  p,
-  a {
-    line-height: 1.5;
+
+  p {
+    line-height: var(--leading-body);
     color: var(--content-color-primary);
+    margin: 0 0 1.25rem;
+    text-wrap: pretty;
+  }
+
+  a {
+    line-height: var(--leading-body);
   }
 </style>

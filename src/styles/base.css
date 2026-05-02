@@ -6,4 +6,19 @@
   --content-color-tertiary: #6a7282;
   --border-color: #4a5565;
   --accent-color: #7f98ca;
+
+  --font-sans:
+    "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif:
+    "Vollkorn Variable", "Vollkorn", Charter, "Iowan Old Style", Georgia, serif;
+
+  --text-caption: 0.8125rem;
+  --text-body: 1.0625rem;
+  --text-subhead: 1.328rem;
+  --text-heading: 1.66rem;
+  --text-display: clamp(2.5rem, 6vw, 5rem);
+
+  --leading-tight: 1.15;
+  --leading-snug: 1.4;
+  --leading-body: 1.7;
 }

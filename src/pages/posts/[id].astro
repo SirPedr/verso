@@ -13,12 +13,25 @@ export const getStaticPaths = async () => {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+
+const isLyric = (post.data.description ?? "").startsWith("Música");
 ---
 
 <BaseLayout title={post.data.title}>
-  <article>
-    <h1>{post.data.title}</h1>
-    <p>{post.data.description}</p>
+  <article class:list={["post", { lyric: isLyric, prose: !isLyric }]}>
+    <header>
+      <h1>{post.data.title}</h1>
+      <p class="subtitle">{post.data.description}</p>
+      <time datetime={post.data.launch_date.toISOString()}>
+        {
+          post.data.launch_date.toLocaleDateString("pt-BR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </time>
+    </header>
 
     <section>
       <Content />
@@ -27,37 +40,70 @@ const { Content } = await render(post);
 </BaseLayout>
 
 <style>
-  h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 8px;
+  .post {
+    font-family: var(--font-serif);
   }
 
-  p {
-    text-align: center;
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  h1 {
+    font-size: var(--text-display);
+    line-height: var(--leading-tight);
+    font-weight: 600;
+    color: var(--title-color);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
     font-style: italic;
     color: var(--content-color-tertiary);
-    margin: 0;
-    margin-bottom: 16px;
-    line-height: 1.5;
+    font-size: var(--text-subhead);
+    margin: 0 0 0.75rem;
+    line-height: var(--leading-snug);
+  }
+
+  time {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    font-style: italic;
+    color: var(--content-color-tertiary);
   }
 
   section {
-    font-family: "Newsreader Variable", serif;
-    p {
-      font-size: 1.2rem;
-      text-align: justify;
-      line-height: 1.5;
-    }
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    hanging-punctuation: first allow-end last;
   }
 
-  @media screen and (min-width: 768px) {
-    h1 {
-      font-size: 4rem;
-    }
+  section :global(p) {
+    margin: 0 0 1.25rem;
+    text-align: left;
+    text-wrap: pretty;
+    hyphens: auto;
+  }
 
-    p {
-      margin-bottom: 24px;
-    }
+  /* Drop cap on first paragraph of prose posts only */
+  .prose section :global(p:first-of-type::first-letter) {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 4em;
+    float: left;
+    line-height: 0.85;
+    padding: 0.1em 0.1em 0 0;
+    margin-right: 0.05em;
+    color: var(--title-color);
+  }
+
+  /* Lyric posts: tighter, no drop cap, narrower feel */
+  .lyric section {
+    line-height: var(--leading-snug);
+  }
+
+  .lyric section :global(p) {
+    margin-bottom: 1.5rem;
   }
 </style>

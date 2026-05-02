@@ -1,6 +1,9 @@
 ---
-import "@fontsource-variable/inter";
-import "@fontsource-variable/newsreader";
+import "@fontsource/atkinson-hyperlegible/400.css";
+import "@fontsource/atkinson-hyperlegible/400-italic.css";
+import "@fontsource/atkinson-hyperlegible/700.css";
+import "@fontsource-variable/vollkorn/wght.css";
+import "@fontsource-variable/vollkorn/wght-italic.css";
 
 import "../styles/base.css";
 
@@ -14,7 +17,7 @@ interface Props {
 const { title } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,12 +40,20 @@ const { title } = Astro.props;
     margin: 0;
     background-color: var(--background-color);
     color: var(--content-color-primary);
-    font-family: "Inter Variable", sans-serif;
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
-  h2 {
-    font-family: "Newsreader Variable", serif;
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    line-height: var(--leading-tight);
+    font-weight: 600;
   }
 
   main {

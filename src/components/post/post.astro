@@ -31,35 +31,35 @@ const { to, title, description, date } = Astro.props as Props;
     display: block;
     color: var(--content-color-primary);
     text-decoration: none;
-    font-family: "Newsreader Variable", serif;
+    font-family: var(--font-serif);
   }
 
   div {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
+    gap: 1.5rem;
   }
 
   h2 {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    font-size: var(--text-subhead);
+    font-weight: 600;
+    margin: 0;
   }
 
   p {
-    margin: 0;
-    line-height: 1.5;
+    margin: 0.25rem 0 0;
+    line-height: var(--leading-snug);
     color: var(--content-color-secondary);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
   }
 
   time {
     color: var(--content-color-tertiary);
-    font-size: 0.75rem;
-    min-width: fit-content;
-    padding-left: 16px;
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    font-style: italic;
+    white-space: nowrap;
   }
 </style>
