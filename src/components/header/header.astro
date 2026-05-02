@@ -1,5 +1,11 @@
+---
+const path = Astro.url.pathname;
+const isHome = path === "/";
+const isAbout = path === "/about" || path.startsWith("/about/");
+---
+
 <header>
-  <section>
+  <a class="brand" href="/" aria-label="Verso, página inicial">
     <svg
       fill="none"
       viewBox="0 0 48 48"
@@ -8,13 +14,17 @@
     >
       <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
     </svg>
-    <h1>Verso</h1>
-  </section>
+    <span class="wordmark">Verso</span>
+  </a>
 
   <nav>
     <ul>
-      <li><a href="/">Início</a></li>
-      <li><a href="/about">Sobre</a></li>
+      <li>
+        <a href="/" class:list={{ current: isHome }} aria-current={isHome ? "page" : undefined}>Início</a>
+      </li>
+      <li>
+        <a href="/about" class:list={{ current: isAbout }} aria-current={isAbout ? "page" : undefined}>Sobre</a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -31,24 +41,30 @@
     box-sizing: border-box;
   }
 
-  section {
-    display: flex;
+  header a.brand,
+  header a.brand:visited {
+    display: inline-flex;
     align-items: center;
     gap: var(--space-xs);
+    color: var(--content-color-primary);
+    text-decoration: none;
+  }
+
+  header a.brand:hover {
+    text-decoration: none;
+    color: var(--title-color);
   }
 
   svg {
     width: 22px;
     height: 22px;
-    color: var(--content-color-primary);
+    color: inherit;
   }
 
-  h1 {
+  .wordmark {
     font-family: var(--font-serif);
     font-size: var(--text-subhead);
     font-weight: 600;
-    margin: 0;
-    color: var(--content-color-primary);
     letter-spacing: 0.01em;
   }
 
@@ -60,15 +76,20 @@
     gap: var(--space-lg);
   }
 
-  nav a,
-  nav a:visited {
+  header nav a,
+  header nav a:visited {
     text-decoration: none;
     color: var(--content-color-secondary);
     font-size: var(--text-caption);
     font-weight: 400;
   }
 
-  nav a:hover {
+  header nav a.current,
+  header nav a.current:visited {
+    color: var(--content-color-primary);
+  }
+
+  header nav a:hover {
     color: var(--content-color-primary);
     text-decoration: none;
   }

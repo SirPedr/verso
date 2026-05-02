@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/base-layout.astro";
 ---
 
-<BaseLayout title="Sobre (Verso)">
+<BaseLayout title="Sobre · Verso">
   <h1>Sobre</h1>
   <p>
     Verso é um blog pessoal no qual compartilho meus pensamentos, ideias e
@@ -11,16 +11,12 @@ import BaseLayout from "../layouts/base-layout.astro";
   </p>
   <p>
     A maior parte do que tem por aqui são letras de músicas. Não só escrevo as
-    letras como também produzo, gravo e edito. O catálogo completo está
-    disponível no meu perfil do Spotify logo abaixo.
+    letras como também produzo, gravo e edito. Meu catálogo está no <a
+      href="https://open.spotify.com/artist/12gx0QmLO32NlSJiEIJaYo?si=rVroaY0nQ3qaixLYkUqXaw"
+      target="_blank"
+      rel="noopener noreferrer">Spotify</a
+    >.
   </p>
-  <a
-    href="https://open.spotify.com/artist/12gx0QmLO32NlSJiEIJaYo?si=rVroaY0nQ3qaixLYkUqXaw"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Spotify
-  </a>
 </BaseLayout>
 
 <style>
@@ -28,17 +24,14 @@ import BaseLayout from "../layouts/base-layout.astro";
     font-size: var(--text-display);
     color: var(--title-color);
     letter-spacing: -0.01em;
-    margin: 0 0 1.5rem;
+    margin: 0 0 var(--space-lg);
   }
 
   p {
     line-height: var(--leading-body);
     color: var(--content-color-primary);
-    margin: 0 0 1.25rem;
+    margin: 0 0 var(--space-md);
     text-wrap: pretty;
-  }
-
-  a {
-    line-height: var(--leading-body);
+    max-width: var(--measure-prose);
   }
 </style>

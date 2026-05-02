@@ -7,7 +7,6 @@ export const posts = defineCollection({
     title: z.string(),
     description: z.string(),
     launch_date: z.date(),
-    query_trigger: z.string().optional(),
   }),
 });
 

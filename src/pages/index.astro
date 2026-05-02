@@ -3,21 +3,16 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
 import Post from "../components/post/post.astro";
 import { sortByDate } from "../lib/sort-by-date/sort-by-date";
-import { filterByQueryTrigger } from "../lib/filter-by-query-trigger/filter-by-query-trigger";
 
-export const prerender = false;
-
-const searchParams = Astro.url.searchParams;
 const posts = await getCollection("posts");
 
-const sortedPosts = posts
-  .filter((post) => filterByQueryTrigger(post, searchParams))
-  .sort((firstPost, secondPost) =>
-    sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
-  );
+const sortedPosts = posts.sort((firstPost, secondPost) =>
+  sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
+);
 ---
 
 <BaseLayout title="Verso">
+  <p class="epigraph">Solidão, angústia, e a busca por significado.</p>
   <section>
     {
       sortedPosts.map((post) => (
@@ -33,6 +28,15 @@ const sortedPosts = posts
 </BaseLayout>
 
 <style>
+  .epigraph {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--content-color-tertiary);
+    font-size: var(--text-body);
+    margin: 0 0 var(--space-2xl);
+    max-width: var(--measure-prose);
+  }
+
   section {
     display: flex;
     flex-direction: column;

@@ -2,12 +2,15 @@
 import BaseLayout from "../layouts/base-layout.astro";
 ---
 
-<BaseLayout title="404 - Not Found">
+<BaseLayout title="Perdido nos versos · Verso">
   <h1>404</h1>
   <h2>Perdido nos versos</h2>
   <p>
     Parece que a página que você procura se perdeu. Talvez nunca tenha sido
     escrita ou tenha sido movida para um outro caminho.
+  </p>
+  <p class="back">
+    <a href="/">Voltar ao início</a>
   </p>
 </BaseLayout>
 
@@ -28,7 +31,7 @@ import BaseLayout from "../layouts/base-layout.astro";
     font-size: var(--text-heading);
     font-weight: 400;
     margin-top: 0;
-    margin-bottom: 1rem;
+    margin-bottom: var(--space-md);
     color: var(--content-color-secondary);
   }
 
@@ -40,9 +43,15 @@ import BaseLayout from "../layouts/base-layout.astro";
     color: var(--content-color-secondary);
   }
 
+  p.back {
+    margin-top: var(--space-xl);
+    font-family: var(--font-serif);
+    font-style: italic;
+  }
+
   @media screen and (min-width: 768px) {
     h2 {
-      margin-top: 1.5rem;
+      margin-top: var(--space-lg);
     }
   }
 </style>
