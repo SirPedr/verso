@@ -33,19 +33,14 @@ const sortedPosts = posts
 </BaseLayout>
 
 <style>
-  div {
-    border: 1px solid red;
-    margin-bottom: 16px;
-  }
-
   section {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: var(--space-xl);
+  }
 
-    a:not(:last-child) {
-      padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-color);
-    }
+  /* Posts with descriptions get a touch more breathing room beneath */
+  section :global(a.with-description) {
+    padding-bottom: var(--space-xs);
   }
 </style>

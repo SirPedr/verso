@@ -1,9 +1,13 @@
 <header>
   <section>
-    <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"
-      ><path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"
-      ></path></svg
+    <svg
+      fill="none"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
     >
+      <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+    </svg>
     <h1>Verso</h1>
   </section>
 
@@ -20,13 +24,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 20px;
+    padding: var(--space-lg) var(--space-md);
+    max-width: 50rem;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   section {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--space-xs);
   }
 
   svg {
@@ -49,7 +57,7 @@
     padding: 0;
     margin: 0;
     display: flex;
-    gap: 1.25rem;
+    gap: var(--space-lg);
   }
 
   nav a,

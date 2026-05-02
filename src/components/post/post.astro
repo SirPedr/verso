@@ -7,10 +7,11 @@ interface Props {
 }
 
 const { to, title, description, date } = Astro.props as Props;
+const hasDescription = Boolean(description);
 ---
 
-<a href={to}>
-  <div>
+<a href={to} class:list={{ "with-description": hasDescription }}>
+  <div class="head">
     <h2>{title}</h2>
     <time datetime={date.toISOString()}>
       {
@@ -22,7 +23,7 @@ const { to, title, description, date } = Astro.props as Props;
       }
     </time>
   </div>
-  <p>{description}</p>
+  {description && <p>{description}</p>}
 </a>
 
 <style>
@@ -34,25 +35,28 @@ const { to, title, description, date } = Astro.props as Props;
     font-family: var(--font-serif);
   }
 
-  div {
+  .head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1.5rem;
+    gap: var(--space-lg);
   }
 
   h2 {
     font-size: var(--text-subhead);
     font-weight: 600;
     margin: 0;
+    line-height: var(--leading-snug);
   }
 
   p {
-    margin: 0.25rem 0 0;
+    margin: var(--space-xs) 0 0;
     line-height: var(--leading-snug);
     color: var(--content-color-secondary);
     font-family: var(--font-sans);
     font-size: var(--text-caption);
+    font-style: italic;
+    max-width: 50ch;
   }
 
   time {
@@ -61,5 +65,13 @@ const { to, title, description, date } = Astro.props as Props;
     font-size: var(--text-caption);
     font-style: italic;
     white-space: nowrap;
+  }
+
+  a:hover h2 {
+    color: var(--title-color);
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 </style>

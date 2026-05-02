@@ -3,17 +3,42 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer>
-  <p>© {currentYear} Verso. Todos os direitos reservados.</p>
+  <p>
+    <svg
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
+    </svg>
+    <span>{currentYear}</span>
+    <span>·</span>
+    <span>Verso</span>
+  </p>
 </footer>
 
 <style>
   footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+    padding: var(--space-xl) var(--space-md) var(--space-2xl);
     text-align: center;
-    font-size: 0.75rem;
-    color: var(--content-color-secondary);
+    color: var(--content-color-tertiary);
+  }
+
+  p {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0;
+    font-size: var(--text-caption);
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  svg {
+    width: 0.85em;
+    height: 0.85em;
+    flex-shrink: 0;
+    opacity: 0.7;
   }
 </style>
