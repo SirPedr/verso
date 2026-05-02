@@ -102,25 +102,7 @@ const isLyric = (post.data.description ?? "").startsWith("Música");
     hyphens: auto;
   }
 
-  /* Drop cap on first paragraph of prose posts only */
-  .prose section :global(p:first-of-type::first-letter) {
-    font-family: var(--font-serif);
-    font-weight: 600;
-    font-size: 3em;
-    float: left;
-    line-height: 0.85;
-    padding: 0.1em 0.1em 0 0;
-    margin-right: 0.05em;
-    color: var(--title-color);
-  }
-
-  @media (min-width: 640px) {
-    .prose section :global(p:first-of-type::first-letter) {
-      font-size: 4em;
-    }
-  }
-
-  /* Lyric posts: tighter, no drop cap, narrower feel */
+  /* Lyric posts: tighter, narrower feel */
   .lyric section {
     line-height: var(--leading-snug);
   }
