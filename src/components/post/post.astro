@@ -27,12 +27,22 @@ const hasDescription = Boolean(description);
 </a>
 
 <style>
-  a,
-  a:visited {
+  a {
     display: block;
     color: var(--content-color-primary);
     text-decoration: none;
     font-family: var(--font-serif);
+  }
+
+  /* Visited posts dim — a quiet "you've read this" mark.
+     Browsers restrict :visited to color properties only for privacy. */
+  a:visited h2 {
+    color: var(--content-color-secondary);
+  }
+
+  a:visited p,
+  a:visited time {
+    color: var(--content-color-tertiary);
   }
 
   .head {
