@@ -50,6 +50,22 @@ const hasDescription = Boolean(description);
     align-items: baseline;
     justify-content: space-between;
     gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  /* On narrow viewports, date drops below the title rather than
+     fighting it for horizontal space. */
+  @media (max-width: 640px) {
+    .head {
+      gap: var(--space-xs);
+    }
+    h2 {
+      flex: 1 1 100%;
+      order: 1;
+    }
+    time {
+      order: 2;
+    }
   }
 
   h2 {

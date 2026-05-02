@@ -106,12 +106,18 @@ const isLyric = (post.data.description ?? "").startsWith("Música");
   .prose section :global(p:first-of-type::first-letter) {
     font-family: var(--font-serif);
     font-weight: 600;
-    font-size: 4em;
+    font-size: 3em;
     float: left;
     line-height: 0.85;
     padding: 0.1em 0.1em 0 0;
     margin-right: 0.05em;
     color: var(--title-color);
+  }
+
+  @media (min-width: 640px) {
+    .prose section :global(p:first-of-type::first-letter) {
+      font-size: 4em;
+    }
   }
 
   /* Lyric posts: tighter, no drop cap, narrower feel */
