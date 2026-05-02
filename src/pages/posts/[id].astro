@@ -17,7 +17,7 @@ const { Content } = await render(post);
 const isLyric = (post.data.description ?? "").startsWith("Música");
 ---
 
-<BaseLayout title={`${post.data.title} · Verso`} wide>
+<BaseLayout title={`${post.data.title} · Verso`}>
   <article class:list={["post", { lyric: isLyric, prose: !isLyric }]}>
     <header>
       <h1>{post.data.title}</h1>
