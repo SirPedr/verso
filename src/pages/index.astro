@@ -3,49 +3,102 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/base-layout.astro";
 import Post from "../components/post/post.astro";
 import { sortByDate } from "../lib/sort-by-date/sort-by-date";
+import { readTime } from "../lib/read-time/read-time";
 
 const posts = await getCollection("posts");
 
 const sortedPosts = posts.sort((firstPost, secondPost) =>
-  sortByDate(firstPost.data.launch_date, secondPost.data.launch_date)
+  sortByDate(firstPost.data.launch_date, secondPost.data.launch_date),
 );
+
+const total = sortedPosts.length;
+const totalLabel = String(total).padStart(2, "0");
 ---
 
 <BaseLayout title="Verso">
   <h1 class="visually-hidden">Verso</h1>
-  <p class="epigraph">Solidão, angústia, e a busca por significado.</p>
-  <section>
-    {
-      sortedPosts.map((post) => (
-        <Post
-          to={`/posts/${post.id}`}
-          title={post.data.title}
-          description={post.data.description}
-          date={post.data.launch_date}
-        />
-      ))
-    }
+
+  <section class="container">
+    <div class="home-hero">
+      <div class="eyebrow">Verso · um diário noturno</div>
+      <p class="display home-headline">
+        <em>Ideias</em> que eu não tenho <em>coragem</em> de colocar em outro lugar.
+      </p>
+      <p class="epigraph">
+        Solidão, angústia e a busca por significado.
+        <span class="em">Comece por onde quiser.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <span class="label">O Índice</span>
+      <span class="label">{totalLabel}&nbsp;&nbsp;entradas</span>
+    </div>
+    <ul class="post-list">
+      {
+        sortedPosts.map((post, i) => (
+          <Post
+            to={`/posts/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            date={post.data.launch_date}
+            num={String(total - i).padStart(2, "0")}
+            readTime={readTime(post.body)}
+          />
+        ))
+      }
+    </ul>
   </section>
 </BaseLayout>
 
 <style>
-  .epigraph {
-    font-family: var(--font-serif);
+  .home-hero {
+    padding: 80px 0 56px;
+  }
+
+  .home-hero .eyebrow {
+    margin-bottom: 28px;
+  }
+
+  .home-headline {
+    margin: 0;
+    max-width: 18ch;
+  }
+
+  .home-headline em {
     font-style: italic;
-    color: var(--content-color-tertiary);
-    font-size: var(--text-body);
-    margin: 0 0 var(--space-2xl);
-    max-width: var(--measure-prose);
+    font-weight: 300;
   }
 
-  section {
+  .epigraph {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 540px;
+    margin: 28px 0 0;
+  }
+
+  .epigraph .em {
+    color: var(--ink);
+  }
+
+  .section-head {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    gap: 16px;
   }
 
-  /* Posts with descriptions get a touch more breathing room beneath */
-  section :global(a.with-description) {
-    padding-bottom: var(--space-xs);
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 </style>

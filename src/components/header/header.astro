@@ -4,97 +4,119 @@ const isHome = path === "/";
 const isAbout = path === "/about" || path.startsWith("/about/");
 ---
 
-<header>
-  <a class="brand" href="/" aria-label="Verso, página inicial">
-    <svg
-      fill="none"
-      viewBox="0 0 48 48"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
-    </svg>
-    <span class="wordmark">Verso</span>
-  </a>
+<header class="site-header">
+  <div class="container-wide">
+    <div class="site-header-inner">
+      <a class="brand" href="/" aria-label="Verso, página inicial">
+        <span class="brand-name">Verso</span>
+        <span class="brand-tagline">um diário</span>
+      </a>
 
-  <nav>
-    <ul>
-      <li>
-        <a href="/" class:list={{ current: isHome }} aria-current={isHome ? "page" : undefined}>Início</a>
-      </li>
-      <li>
-        <a href="/about" class:list={{ current: isAbout }} aria-current={isAbout ? "page" : undefined}>Sobre</a>
-      </li>
-    </ul>
-  </nav>
+      <nav class="primary" aria-label="Principal">
+        <a
+          href="/"
+          class:list={{ active: isHome }}
+          aria-current={isHome ? "page" : undefined}>Início</a
+        >
+        <a
+          href="/about"
+          class:list={{ active: isAbout }}
+          aria-current={isAbout ? "page" : undefined}>Sobre</a
+        >
+      </nav>
+    </div>
+  </div>
 </header>
 
 <style>
-  header {
+  .site-header {
+    padding: 36px 0 0;
+  }
+
+  .site-header-inner {
     display: flex;
+    align-items: baseline;
     justify-content: space-between;
-    align-items: center;
-    padding: var(--space-lg) var(--space-md);
-    max-width: 50rem;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 28px;
+    gap: 24px;
+    flex-wrap: wrap;
   }
 
-  header a.brand,
-  header a.brand:visited {
+  .brand,
+  .brand:visited {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    border: 0;
     display: inline-flex;
-    align-items: center;
-    gap: var(--space-xs);
-    color: var(--content-color-primary);
-    text-decoration: none;
-    min-height: 44px;
+    align-items: baseline;
+    gap: 12px;
   }
 
-  header a.brand:hover {
-    text-decoration: none;
-    color: var(--title-color);
+  .brand:hover {
+    color: var(--accent-strong);
+    border: 0;
   }
 
-  svg {
-    width: 22px;
-    height: 22px;
-    color: inherit;
-  }
-
-  .wordmark {
-    font-family: var(--font-serif);
-    font-size: var(--text-subhead);
-    font-weight: 600;
-    letter-spacing: 0.01em;
-  }
-
-  nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: var(--space-lg);
-  }
-
-  header nav a,
-  header nav a:visited {
-    text-decoration: none;
-    color: var(--content-color-secondary);
-    font-size: var(--text-caption);
+  .brand-tagline {
+    font-style: normal;
+    font-family: var(--mono);
+    font-size: 10px;
     font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  nav.primary {
+    display: flex;
+    gap: 28px;
+  }
+
+  nav.primary a,
+  nav.primary a:visited {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border: 0;
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
     display: inline-flex;
     align-items: center;
-    min-height: 44px;
   }
 
-  header nav a.current,
-  header nav a.current:visited {
-    color: var(--content-color-primary);
+  /* Touch-target spec: ≥44 px tap area on coarse pointers, without altering
+     the visual rhythm. The padding lands on top so the baseline sits flush
+     with the brand wordmark, and the border-bottom rule still tracks the
+     11 px label. */
+  @media (max-width: 720px), (pointer: coarse) {
+    nav.primary a,
+    nav.primary a:visited {
+      min-height: 44px;
+      padding-top: 16px;
+      padding-bottom: 4px;
+    }
+
+    .brand,
+    .brand:visited {
+      min-height: 44px;
+    }
   }
 
-  header nav a:hover {
-    color: var(--content-color-primary);
-    text-decoration: none;
+  nav.primary a:hover {
+    color: var(--ink);
+    border-bottom-color: transparent;
+  }
+
+  nav.primary a.active,
+  nav.primary a.active:visited {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
   }
 </style>

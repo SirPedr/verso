@@ -1,34 +1,332 @@
+/* Verso — type & color foundations
+   Warm sepia dark, set in Fraunces with Inter & JetBrains Mono for metadata. */
+
 :root {
-  --background-color: #141414;
-  --title-color: #ffffff;
-  --content-color-primary: #d1d1d6;
-  --content-color-secondary: #a1a1aa;
-  --content-color-tertiary: #878fa3;
-  --accent-color: #7f98ca;
+  /* sepia-warm dark — soft black */
+  --ground: #15110d;
+  --ground-2: #1c1813;
+  --ground-3: #241f18;
+  --ink: #e6dfd0;
+  --ink-soft: #b9b1a0;
+  --ink-faint: #847d6e; /* AA-compliant on --ground (≈4.77:1) for small mono labels */
+  --ink-ghost: #3a342b;
+  --rule: #2a241c;
+  --accent: #b08968; /* warm rust/sepia */
+  --accent-strong: #c69470;
+  --accent-deep: #7a5a3f;
+  --selection: rgba(176, 137, 104, 0.28);
 
-  --font-sans:
-    "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif:
-    "Vollkorn Variable", "Vollkorn", Charter, "Iowan Old Style", Georgia, serif;
+  --serif:
+    "Fraunces Variable", "Iowan Old Style", "Hoefler Text", Georgia, serif;
+  --sans:
+    "Inter Variable", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono:
+    "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --text-caption: 0.8125rem;
-  --text-body: 1.0625rem;
-  --text-subhead: 1.328rem;
-  --text-heading: 1.66rem;
-  --text-display: clamp(2.5rem, 6vw, 5rem);
+  --maxw: 680px;
+  --maxw-wide: 920px;
 
-  --leading-tight: 1.15;
-  --leading-snug: 1.4;
-  --leading-body: 1.7;
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-page: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 240ms;
+  --dur-page: 420ms;
+}
 
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
-  --space-4xl: 6rem;
+* {
+  box-sizing: border-box;
+}
 
-  --measure-prose: 65ch;
+::selection {
+  background: var(--selection);
+  color: var(--ink);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern", "liga", "calt", "onum";
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Subtle film grain — pure-CSS overlay, no asset cost. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Links: ink with a faint underline rule that warms on hover. */
+a,
+a:visited {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-ghost);
+  transition:
+    color var(--dur-fast) var(--ease-out-quart),
+    border-color var(--dur-fast) var(--ease-out-quart);
+}
+
+a:hover {
+  color: var(--accent-strong);
+  border-bottom-color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ── Type scale ──────────────────────────────────────────────────────────── */
+
+.display {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 50;
+}
+
+.display-italic {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(32px, 4.6vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 50;
+}
+
+.h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Layout primitives ───────────────────────────────────────────────────── */
+
+.shell {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--maxw-wide);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Prose ───────────────────────────────────────────────────────────────── */
+
+.prose {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.72;
+  color: var(--ink);
+}
+
+.prose p {
+  margin: 0 0 1.4em;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
+.prose p + p {
+  text-indent: 0;
+}
+
+.prose h2 {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.015em;
+  margin: 2.4em 0 0.8em;
+}
+
+.prose blockquote {
+  margin: 2em 0;
+  padding: 0 0 0 28px;
+  border-left: 1px solid var(--accent);
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.prose blockquote cite {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.prose em {
+  color: var(--ink);
+}
+
+.prose strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.prose a,
+.prose a:visited {
+  color: var(--ink);
+  border-bottom-color: var(--accent-deep);
+}
+
+.prose a:hover {
+  color: var(--accent-strong);
+}
+
+.fleuron {
+  text-align: center;
+  margin: 3em 0;
+  color: var(--ink-faint);
+  font-family: var(--serif);
+  font-size: 18px;
+  letter-spacing: 1.2em;
+}
+
+/* Drop cap on the first paragraph — essays and about, lyrics opt out. */
+.post.essay .prose > p:first-of-type::first-letter,
+.about-page .prose > p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 5.4em;
+  line-height: 0.86;
+  float: left;
+  padding: 0.06em 0.12em 0 0;
+  margin-top: 0.04em;
+  color: var(--accent);
+  font-variation-settings:
+    "opsz" 144,
+    "SOFT" 30;
+}
+
+/* Lyric posts: tighter rhythm, narrower measure, no drop cap. */
+.post.lyric .prose {
+  line-height: 1.5;
+  max-width: 50ch;
+}
+
+.post.lyric .prose p {
+  margin-bottom: 1.6em;
+}
+
+/* ── Page transition ─────────────────────────────────────────────────────── */
+
+.page-enter {
+  animation: pageIn var(--dur-page) var(--ease-out-page) both;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

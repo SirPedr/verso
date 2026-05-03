@@ -4,100 +4,155 @@ interface Props {
   title: string;
   description: string;
   date: Date;
+  num: string;
+  readTime: string;
 }
 
-const { to, title, description, date } = Astro.props as Props;
-const hasDescription = Boolean(description);
+const { to, title, description, date, num, readTime } = Astro.props as Props;
 ---
 
-<a href={to} class:list={{ "with-description": hasDescription }}>
-  <div class="head">
-    <h2>{title}</h2>
-    <time datetime={date.toISOString()}>
-      {
-        date.toLocaleDateString("pt-BR", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      }
-    </time>
-  </div>
-  {description && <p>{description}</p>}
-</a>
+<li class="post-row">
+  <a href={to} class="post-link">
+    <div class="post-num">№ {num}</div>
+    <div class="post-body">
+      <h2 class="post-title">{title}</h2>
+      {description && <p class="post-desc">{description}</p>}
+    </div>
+    <div class="post-meta">
+      <time datetime={date.toISOString()}>
+        {
+          date.toLocaleDateString("pt-BR", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </time>
+      <span class="post-readtime">
+        {readTime}
+        <span class="post-arrow" aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+</li>
 
 <style>
-  a {
-    display: block;
-    color: var(--content-color-primary);
-    text-decoration: none;
-    font-family: var(--font-serif);
+  .post-row {
+    list-style: none;
+    border-bottom: 1px solid var(--rule);
   }
 
-  /* Visited posts dim — a quiet "you've read this" mark.
-     Browsers restrict :visited to color properties only for privacy. */
-  a:visited h2 {
-    color: var(--content-color-secondary);
-  }
-
-  a:visited p,
-  a:visited time {
-    color: var(--content-color-tertiary);
-  }
-
-  .head {
-    display: flex;
+  .post-link,
+  .post-link:visited {
+    display: grid;
+    grid-template-columns: 64px 1fr 140px;
+    gap: 28px;
     align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-lg);
-    flex-wrap: wrap;
+    padding: 28px 0;
+    color: var(--ink);
+    border: 0;
+    transition: padding 240ms ease;
   }
 
-  /* On narrow viewports, date drops below the title rather than
-     fighting it for horizontal space. */
-  @media (max-width: 640px) {
-    .head {
-      gap: var(--space-xs);
-    }
-    h2 {
-      flex: 1 1 100%;
-      order: 1;
-    }
-    time {
-      order: 2;
-    }
+  .post-link:hover {
+    padding-left: 8px;
+    border: 0;
+    color: var(--ink);
   }
 
-  h2 {
-    font-size: var(--text-subhead);
-    font-weight: 600;
+  .post-link:hover .post-title {
+    color: var(--accent-strong);
+  }
+
+  .post-link:hover .post-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  .post-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin: 0 0 8px;
+    transition: color 200ms ease;
+  }
+
+  /* Visited posts dim — quiet "you've read this" mark.
+     :visited is restricted to color in modern browsers for privacy. */
+  .post-link:visited .post-title {
+    color: var(--ink-soft);
+  }
+
+  .post-desc {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--ink-soft);
     margin: 0;
-    line-height: var(--leading-snug);
+    max-width: 56ch;
   }
 
-  p {
-    margin: var(--space-xs) 0 0;
-    line-height: var(--leading-snug);
-    color: var(--content-color-secondary);
-    font-family: var(--font-sans);
-    font-size: var(--text-caption);
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+  }
+
+  .post-meta time {
+    font-family: var(--mono);
+    color: var(--ink-faint);
+  }
+
+  .post-readtime {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  .post-arrow {
+    opacity: 0;
+    color: var(--accent);
+    font-family: var(--serif);
     font-style: italic;
-    max-width: 50ch;
+    transition:
+      opacity 200ms ease,
+      transform 240ms ease;
   }
 
-  time {
-    color: var(--content-color-tertiary);
-    font-family: var(--font-sans);
-    font-size: var(--text-caption);
-    font-style: italic;
-    white-space: nowrap;
-  }
-
-  a:hover h2 {
-    color: var(--title-color);
-  }
-
-  a:hover {
-    text-decoration: none;
+  @media (max-width: 720px) {
+    .post-link {
+      grid-template-columns: 40px 1fr;
+      gap: 16px;
+    }
+    .post-meta {
+      grid-column: 2;
+      align-items: flex-start;
+      text-align: left;
+      margin-top: 4px;
+      flex-direction: row;
+      gap: 14px;
+    }
+    .post-title {
+      font-size: 24px;
+    }
   }
 </style>

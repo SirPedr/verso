@@ -2,45 +2,37 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer>
-  <p>
-    <svg
-      viewBox="0 0 48 48"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path d="M6 6H42L36 24L42 42H6L12 24L6 6Z" fill="currentColor"></path>
-    </svg>
-    <span>{currentYear}</span>
-    <span aria-hidden="true">·</span>
-    <span>Verso</span>
-    <span aria-hidden="true">·</span>
-    <span>escrito em silêncio</span>
-  </p>
+<footer class="site-footer">
+  <div class="container-wide">
+    <div class="site-footer-inner">
+      <span class="colophon">Verso · MMXXVI</span>
+      <span class="colophon">composto em Fraunces &amp; JetBrains Mono</span>
+      <span class="colophon">© {currentYear} — escrito em silêncio</span>
+    </div>
+  </div>
 </footer>
 
 <style>
-  footer {
+  .site-footer {
     flex-shrink: 0;
-    padding: var(--space-xl) var(--space-md) var(--space-2xl);
-    text-align: center;
-    color: var(--content-color-tertiary);
+    margin-top: 96px;
+    padding: 32px 0 40px;
+    border-top: 1px solid var(--rule);
   }
 
-  p {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    margin: 0;
-    font-size: var(--text-caption);
-    font-style: italic;
-    letter-spacing: 0.02em;
+  .site-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
   }
 
-  svg {
-    width: 0.85em;
-    height: 0.85em;
-    flex-shrink: 0;
-    opacity: 0.7;
+  .colophon {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
   }
 </style>
