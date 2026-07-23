@@ -1,0 +1,371 @@
+---
+import { getCollection } from "astro:content";
+import JournalLayout from "../../layouts/journal-layout.astro";
+import MoodSpectrum from "../../components/mood-spectrum/mood-spectrum.astro";
+import { moodLabel, moodGloss, type Mood } from "../../lib/moods/moods";
+import { fmtDay, fmtMonth } from "../../lib/journal-date/journal-date";
+
+const entries = await getCollection("journal");
+const sorted = entries.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+
+// First sentence of the body, markdown stripped, as a quiet opening line.
+function opening(body: string | undefined): string {
+  if (!body) return "";
+  const firstBlock = body
+    .split(/\n\s*\n/)
+    .map((b) => b.trim())
+    .find((b) => b && !b.startsWith("#") && !b.startsWith(">"));
+  if (!firstBlock) return "";
+  const plain = firstBlock
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1") // links → text
+    .replace(/[*_`#>]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return plain.length > 148 ? plain.slice(0, 147).trimEnd() + "…" : plain;
+}
+
+// Group into "mês de ano" buckets, preserving the reverse-chronological order.
+const groups: { key: string; entries: typeof sorted }[] = [];
+for (const entry of sorted) {
+  const key = fmtMonth(entry.data.date);
+  const last = groups[groups.length - 1];
+  if (last && last.key === key) last.entries.push(entry);
+  else groups.push({ key, entries: [entry] });
+}
+
+const total = sorted.length;
+---
+
+<JournalLayout title="o diário · Verso" showIndexLink={false}>
+  <section class="container">
+    <div class="diary-hero">
+      <p class="diary-lede">
+        Onde eu deixo o que <em>não cabe</em> em nenhum verso.
+      </p>
+      <p class="diary-sub">
+        Anotações de noites soltas, guardadas por humor. Ninguém lê isto além de
+        mim.
+      </p>
+    </div>
+  </section>
+
+  {
+    total === 0 ? (
+      <section class="container">
+        <div class="diary-empty">
+          <p class="diary-empty-line">Ainda não escrevi nada aqui.</p>
+          <p class="diary-empty-sub">
+            A primeira noite espera. Quando ela chegar, começa por ela.
+          </p>
+        </div>
+      </section>
+    ) : (
+      <section class="container">
+        <div class="diary-count">
+          <span class="label">o diário</span>
+          <span class="label">
+            {String(total).padStart(2, "0")}&nbsp;&nbsp;noites
+          </span>
+        </div>
+
+        <div class="spectrum-key">
+          <MoodSpectrum caption="a escala" />
+        </div>
+
+        {groups.map((group) => (
+          <div class="month-group">
+            <h2 class="month-head">{group.key}</h2>
+            <ul class="entry-list">
+              {group.entries.map((entry) => {
+                const mood = entry.data.mood as Mood;
+                const line = opening(entry.body);
+                return (
+                  <li class="entry" data-mood={mood}>
+                    <a class="entry-link" href={`/journal/${entry.id}`}>
+                      <span class="entry-day">{fmtDay(entry.data.date)}</span>
+                      <span class="entry-main">
+                        {entry.data.title && (
+                          <span class="entry-title">{entry.data.title}</span>
+                        )}
+                        {line && <span class="entry-opening">{line}</span>}
+                      </span>
+                      <span class="entry-mood">
+                        <span
+                          class="mood-dot"
+                          aria-hidden="true"
+                        />
+                        <span class="mood-label">
+                          {moodLabel[mood]}
+                          <span class="visually-hidden">
+                            {" "}
+                            — {moodGloss[mood]}
+                          </span>
+                        </span>
+                      </span>
+                      <span class="entry-arrow" aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </section>
+    )
+  }
+</JournalLayout>
+
+<style>
+  .diary-hero {
+    padding: 72px 0 48px;
+  }
+
+  .diary-lede {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 5.2vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin: 0;
+    max-width: 16ch;
+    text-wrap: balance;
+    font-variation-settings:
+      "opsz" 144,
+      "SOFT" 50;
+  }
+
+  .diary-lede em {
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .diary-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 28px 0 0;
+  }
+
+  .diary-count {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    gap: 16px;
+  }
+
+  .spectrum-key {
+    margin-top: 36px;
+    padding: 28px 0 4px;
+  }
+
+  .month-group {
+    margin-top: 44px;
+  }
+
+  .month-head {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    font-variant-caps: all-small-caps;
+    color: var(--ink-faint);
+    margin: 0 0 4px;
+    padding-left: 2px;
+  }
+
+  .entry-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .entry {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* 3-column baseline grid: day · thought · mood, with the arrow tucked right.
+     Collapses to two rows on narrow screens (meta drops beneath the thought). */
+  .entry-link,
+  .entry-link:visited {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr auto auto;
+    align-items: baseline;
+    gap: 8px 22px;
+    padding: 22px 2px;
+    border: 0;
+    color: var(--ink);
+    transition:
+      padding-left var(--dur-base) var(--ease-out-quart),
+      color var(--dur-fast) var(--ease-out-quart);
+  }
+
+  .entry-link:hover {
+    border: 0;
+    padding-left: 10px;
+  }
+
+  .entry-day {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    font-variant-caps: all-small-caps;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .entry-main {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .entry-title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.24;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    transition: color var(--dur-fast) var(--ease-out-quart);
+  }
+
+  .entry-opening {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.42;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+
+  /* When an entry has no title, the opening line stands in for it, larger. */
+  .entry-main:not(:has(.entry-title)) .entry-opening {
+    font-size: 21px;
+    color: var(--ink);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .entry-mood {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 9px;
+    white-space: nowrap;
+  }
+
+  .mood-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--mood-dot);
+    flex: none;
+    align-self: center;
+  }
+
+  .mood-label {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-variant-caps: all-small-caps;
+    color: var(--mood-ink);
+  }
+
+  .entry-arrow {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--mood-dot);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--dur-base) var(--ease-out-quart),
+      transform var(--dur-base) var(--ease-out-quart);
+    justify-self: end;
+  }
+
+  .entry-link:hover .entry-title {
+    color: var(--mood-ink);
+  }
+
+  .entry-link:hover .entry-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .entry-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* ── Empty state ────────────────────────────────────────────────────────── */
+  .diary-empty {
+    padding: 40px 0 96px;
+    max-width: 32ch;
+  }
+
+  .diary-empty-line {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .diary-empty-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 20px 0 0;
+  }
+
+  /* ── Responsive: collapse the grid so meta sits beneath the thought ─────── */
+  @media (max-width: 620px) {
+    .entry-link,
+    .entry-link:visited {
+      grid-template-columns: 1fr auto;
+      gap: 10px 16px;
+    }
+
+    .entry-day {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .entry-mood {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    .entry-main {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .entry-arrow {
+      display: none;
+    }
+  }
+</style>
