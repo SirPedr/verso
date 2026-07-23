@@ -30,7 +30,7 @@ import BaseLayout from "../layouts/base-layout.astro";
 
       <dl class="about-detail">
         <dt>Composto em</dt>
-        <dd>Fraunces, com metadados em JetBrains Mono.</dd>
+        <dd>Fraunces, do título ao colofão: uma só voz.</dd>
 
         <dt>Cadência</dt>
         <dd>Sem agenda. Os textos chegam quando chegam.</dd>
@@ -88,10 +88,11 @@ import BaseLayout from "../layouts/base-layout.astro";
   }
 
   .about-detail dt {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.12em;
+    font-variant-caps: all-small-caps;
     color: var(--ink-faint);
     padding-top: 4px;
   }

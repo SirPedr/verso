@@ -70,11 +70,12 @@ const { to, title, description, date, num, readTime } = Astro.props as Props;
   }
 
   .post-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.18em;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.1em;
+    font-variant-caps: all-small-caps;
     color: var(--ink-faint);
-    font-variant-numeric: tabular-nums;
   }
 
   .post-title {
@@ -111,14 +112,16 @@ const { to, title, description, date, num, readTime } = Astro.props as Props;
     gap: 6px;
     align-items: flex-end;
     text-align: right;
-    font-family: var(--mono);
-    font-size: 11px;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 14px;
     letter-spacing: 0.06em;
+    font-variant-caps: all-small-caps;
     color: var(--ink-faint);
   }
 
   .post-meta time {
-    font-family: var(--mono);
+    font-family: var(--serif);
     color: var(--ink-faint);
   }
 

@@ -1,12 +1,9 @@
 ---
 import "@fontsource-variable/fraunces/full.css";
 import "@fontsource-variable/fraunces/full-italic.css";
-import "@fontsource-variable/inter/opsz.css";
-import "@fontsource-variable/jetbrains-mono/index.css";
 
 import frauncesLatin from "@fontsource-variable/fraunces/files/fraunces-latin-full-normal.woff2";
 import frauncesLatinItalic from "@fontsource-variable/fraunces/files/fraunces-latin-full-italic.woff2";
-import interLatin from "@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2";
 
 import "../styles/base.css";
 
@@ -35,13 +32,6 @@ const { title } = Astro.props;
     <link
       rel="preload"
       href={frauncesLatinItalic}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={interLatin}
       as="font"
       type="font/woff2"
       crossorigin

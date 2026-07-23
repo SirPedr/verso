@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear();
   <div class="container-wide">
     <div class="site-footer-inner">
       <span class="colophon">Verso · MMXXVI</span>
-      <span class="colophon">composto em Fraunces &amp; JetBrains Mono</span>
+      <span class="colophon">composto inteiramente em Fraunces</span>
       <span class="colophon">© {currentYear} — escrito em silêncio</span>
     </div>
   </div>
@@ -29,10 +29,11 @@ const currentYear = new Date().getFullYear();
   }
 
   .colophon {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    font-variant-caps: all-small-caps;
     color: var(--ink-faint);
   }
 </style>
