@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-23",
+  "title": "Design System: Verso",
+  "extensions": {
+    "colorMeta": {
+      "lamplit-rust": { "role": "primary", "displayName": "Lamplit Rust", "canonical": "oklch(0.66 0.05 62)", "tonalRamp": ["oklch(0.16 0.03 62)", "oklch(0.27 0.04 62)", "oklch(0.38 0.05 62)", "oklch(0.49 0.055 62)", "oklch(0.59 0.055 62)", "oklch(0.70 0.05 62)", "oklch(0.82 0.035 62)", "oklch(0.93 0.018 62)"] },
+      "lamplit-rust-lit": { "role": "primary", "displayName": "Lamplit Rust, Lit", "canonical": "oklch(0.70 0.055 62)", "tonalRamp": ["oklch(0.18 0.035 62)", "oklch(0.30 0.045 62)", "oklch(0.42 0.055 62)", "oklch(0.54 0.06 62)", "oklch(0.64 0.06 62)", "oklch(0.74 0.05 62)", "oklch(0.85 0.035 62)", "oklch(0.94 0.018 62)"] },
+      "banked-rust": { "role": "primary", "displayName": "Banked Rust", "canonical": "oklch(0.46 0.045 58)", "tonalRamp": ["oklch(0.15 0.03 58)", "oklch(0.24 0.04 58)", "oklch(0.33 0.045 58)", "oklch(0.42 0.045 58)", "oklch(0.51 0.045 58)", "oklch(0.62 0.04 58)", "oklch(0.76 0.03 58)", "oklch(0.90 0.018 58)"] },
+      "soft-black": { "role": "neutral", "displayName": "Soft Black", "canonical": "oklch(0.19 0.012 62)", "tonalRamp": ["oklch(0.16 0.012 62)", "oklch(0.24 0.012 62)", "oklch(0.34 0.011 62)", "oklch(0.46 0.010 62)", "oklch(0.58 0.010 65)", "oklch(0.70 0.011 72)", "oklch(0.82 0.012 78)", "oklch(0.92 0.012 82)"] },
+      "raised-ground": { "role": "neutral", "displayName": "Raised Ground", "canonical": "oklch(0.22 0.012 62)", "tonalRamp": ["oklch(0.18 0.012 62)", "oklch(0.26 0.012 62)", "oklch(0.36 0.011 65)", "oklch(0.48 0.011 68)", "oklch(0.60 0.011 72)", "oklch(0.72 0.011 76)", "oklch(0.84 0.012 80)", "oklch(0.93 0.012 82)"] },
+      "umber-ground": { "role": "neutral", "displayName": "Umber Ground", "canonical": "oklch(0.25 0.014 68)", "tonalRamp": ["oklch(0.20 0.014 68)", "oklch(0.28 0.014 68)", "oklch(0.38 0.013 70)", "oklch(0.50 0.013 74)", "oklch(0.62 0.013 78)", "oklch(0.74 0.013 80)", "oklch(0.85 0.013 82)", "oklch(0.94 0.012 84)"] },
+      "coated-paper": { "role": "neutral", "displayName": "Coated Paper", "canonical": "oklch(0.90 0.015 82)", "tonalRamp": ["oklch(0.30 0.012 78)", "oklch(0.42 0.013 80)", "oklch(0.54 0.014 80)", "oklch(0.66 0.015 82)", "oklch(0.76 0.015 82)", "oklch(0.84 0.015 82)", "oklch(0.90 0.015 82)", "oklch(0.96 0.010 84)"] },
+      "faded-ink": { "role": "neutral", "displayName": "Faded Ink", "canonical": "oklch(0.75 0.016 78)", "tonalRamp": ["oklch(0.28 0.014 76)", "oklch(0.40 0.015 78)", "oklch(0.52 0.016 78)", "oklch(0.63 0.016 78)", "oklch(0.72 0.016 78)", "oklch(0.80 0.015 80)", "oklch(0.88 0.013 82)", "oklch(0.95 0.010 84)"] },
+      "marginalia": { "role": "neutral", "displayName": "Marginalia", "canonical": "oklch(0.58 0.018 74)", "tonalRamp": ["oklch(0.24 0.014 72)", "oklch(0.34 0.016 74)", "oklch(0.44 0.018 74)", "oklch(0.54 0.018 74)", "oklch(0.62 0.018 76)", "oklch(0.72 0.016 78)", "oklch(0.83 0.014 80)", "oklch(0.93 0.010 82)"] },
+      "ghost-rule": { "role": "neutral", "displayName": "Ghost Rule", "canonical": "oklch(0.30 0.014 64)", "tonalRamp": ["oklch(0.20 0.012 62)", "oklch(0.28 0.014 64)", "oklch(0.38 0.014 66)", "oklch(0.48 0.014 70)", "oklch(0.60 0.013 74)", "oklch(0.72 0.012 78)", "oklch(0.84 0.012 80)", "oklch(0.93 0.010 82)"] },
+      "hairline": { "role": "neutral", "displayName": "Hairline", "canonical": "oklch(0.26 0.012 60)", "tonalRamp": ["oklch(0.19 0.012 60)", "oklch(0.26 0.012 60)", "oklch(0.36 0.012 64)", "oklch(0.48 0.012 68)", "oklch(0.60 0.011 72)", "oklch(0.72 0.011 76)", "oklch(0.84 0.011 80)", "oklch(0.93 0.010 82)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The home epigraph headline. One per page, at most." },
+      "headline": { "displayName": "Headline", "purpose": "The hanging article title, left-aligned." },
+      "title": { "displayName": "Title", "purpose": "Post-row titles and prose h2." },
+      "subtitle": { "displayName": "Subtitle", "purpose": "Italic 300 descriptions and the 404 message, in Faded Ink." },
+      "body": { "displayName": "Body", "purpose": "Prose. Capped at the 680px measure (50ch for lyrics), long leading for night reading." },
+      "label": { "displayName": "Label", "purpose": "All metadata: eyebrows, dates, read-time, nav, colophon. Fraunces small caps." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out-quart", "value": "cubic-bezier(0.25, 1, 0.5, 1)", "purpose": "Link color/underline and micro-state transitions." },
+      { "name": "ease-out-page", "value": "cubic-bezier(0.2, 0.7, 0.2, 1)", "purpose": "The single page-in fade on route load." },
+      { "name": "dur-fast", "value": "180ms", "purpose": "Link and small state changes." },
+      { "name": "dur-base", "value": "240ms", "purpose": "Post-row pad-shift and arrow." },
+      { "name": "dur-page", "value": "420ms", "purpose": "Page-in fade." }
+    ],
+    "breakpoints": [
+      { "name": "prose", "value": "640px" },
+      { "name": "layout", "value": "720px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Framing Link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Nav, back-links, footer links: ink over a hairline underline that warms to rust on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\">voltar ao índice</a>",
+      "css": ".ds-link, .ds-link:visited { color: #e6dfd0; text-decoration: none; border-bottom: 1px solid #3a342b; font-family: 'Fraunces Variable', Georgia, serif; transition: color 180ms cubic-bezier(0.25,1,0.5,1), border-color 180ms cubic-bezier(0.25,1,0.5,1); } .ds-link:hover { color: #c69470; border-bottom-color: #b08968; } .ds-link:focus-visible { outline: 2px solid #b08968; outline-offset: 3px; border-radius: 1px; }"
+    },
+    {
+      "name": "Metadata Label",
+      "kind": "custom",
+      "refersTo": "metadata-label",
+      "description": "The small-caps register carrying every date, eyebrow, and colophon line.",
+      "html": "<span class=\"ds-meta\">ensaio · 3 de dezembro de 2025 · 2 min</span>",
+      "css": ".ds-meta { font-family: 'Fraunces Variable', Georgia, serif; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; font-variant-caps: all-small-caps; color: #847d6e; }"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Small-caps nav item; faded at rest, warms to paper, active route carries a rust underline.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"#\">início</a><a class=\"ds-nav-link\" href=\"#\">sobre</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 28px; } .ds-nav-link, .ds-nav-link:visited { font-family: 'Fraunces Variable', Georgia, serif; font-weight: 500; font-size: 15px; letter-spacing: 0.1em; font-variant-caps: all-small-caps; color: #b9b1a0; text-decoration: none; padding-bottom: 4px; border-bottom: 1px solid transparent; transition: color 180ms cubic-bezier(0.25,1,0.5,1); } .ds-nav-link:hover { color: #e6dfd0; } .ds-nav-link.ds-active { color: #e6dfd0; border-bottom-color: #b08968; }"
+    },
+    {
+      "name": "Post Row",
+      "kind": "custom",
+      "refersTo": "post-row-title",
+      "description": "The signature home index row. Grid of number / title+desc / meta; hover nudges left and floats a rust arrow. Not a card.",
+      "html": "<a class=\"ds-post-row\" href=\"#\"><span class=\"ds-post-num\">№ 16</span><span class=\"ds-post-body\"><span class=\"ds-post-title\">O que você estava fazendo aos 23 anos?</span></span><span class=\"ds-post-meta\">2 de maio de 2026 <span class=\"ds-post-arrow\">→</span></span></a>",
+      "css": ".ds-post-row { display: grid; grid-template-columns: 64px 1fr 160px; gap: 28px; align-items: baseline; padding: 28px 0; border-bottom: 1px solid #2a241c; text-decoration: none; transition: padding 240ms cubic-bezier(0.25,1,0.5,1); } .ds-post-row:hover { padding-left: 8px; } .ds-post-num { font-family: 'Fraunces Variable', Georgia, serif; font-weight: 500; font-size: 14px; letter-spacing: 0.1em; font-variant-caps: all-small-caps; color: #847d6e; } .ds-post-title { font-family: 'Fraunces Variable', Georgia, serif; font-weight: 400; font-size: 28px; letter-spacing: -0.018em; color: #e6dfd0; transition: color 200ms ease; } .ds-post-row:hover .ds-post-title { color: #c69470; } .ds-post-meta { text-align: right; font-family: 'Fraunces Variable', Georgia, serif; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; font-variant-caps: all-small-caps; color: #847d6e; } .ds-post-arrow { color: #b08968; opacity: 0; transition: opacity 200ms ease, transform 240ms ease; } .ds-post-row:hover .ds-post-arrow { opacity: 1; transform: translateX(4px); }"
+    },
+    {
+      "name": "Drop Cap Paragraph",
+      "kind": "custom",
+      "refersTo": "drop-cap",
+      "description": "First paragraph of an essay: a 5.4em rust initial floated into the text. Lyrics opt out.",
+      "html": "<p class=\"ds-dropcap\">Tem uma música do Sonata Arctica que se chama <em>Flag in the Ground</em>. É muito boa, e o trecho me marcou pelo quanto consegui me identificar com ele.</p>",
+      "css": ".ds-dropcap { font-family: 'Fraunces Variable', Georgia, serif; font-size: 19px; line-height: 1.72; color: #e6dfd0; max-width: 40ch; } .ds-dropcap::first-letter { font-size: 5.4em; line-height: 0.86; float: left; padding: 0.06em 0.12em 0 0; margin-top: 0.04em; color: #b08968; } .ds-dropcap em { font-style: italic; }"
+    },
+    {
+      "name": "Blockquote",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Italic pull-quote with a 1px rust left rule (never thicker) and a small-caps cite.",
+      "html": "<blockquote class=\"ds-quote\">Yet I have never felt so alone.<cite>Sonata Arctica · Flag in the Ground</cite></blockquote>",
+      "css": ".ds-quote { margin: 0; padding: 0 0 0 28px; border-left: 1px solid #b08968; font-family: 'Fraunces Variable', Georgia, serif; font-style: italic; font-weight: 300; font-size: 24px; line-height: 1.4; color: #e6dfd0; } .ds-quote cite { display: block; margin-top: 12px; font-style: normal; font-weight: 500; font-size: 14px; letter-spacing: 0.06em; font-variant-caps: all-small-caps; color: #847d6e; }"
+    },
+    {
+      "name": "Footer Colophon",
+      "kind": "custom",
+      "refersTo": "metadata-label",
+      "description": "Three small-caps lines over a hairline; transparent, non-fixed, voiced.",
+      "html": "<footer class=\"ds-colophon\"><span>Verso · MMXXVI</span><span>composto inteiramente em Fraunces</span><span>© 2026 — escrito em silêncio</span></footer>",
+      "css": ".ds-colophon { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 32px; border-top: 1px solid #2a241c; } .ds-colophon span { font-family: 'Fraunces Variable', Georgia, serif; font-weight: 500; font-size: 13px; letter-spacing: 0.1em; font-variant-caps: all-small-caps; color: #847d6e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Lamplit Page",
+    "overview": "Verso is a printed page held under a single lamp at night. The surface is a warm-sepia near-black; the text is light, warm, and still, the way ink sits on coated paper. Nothing glows. There is no chrome, no card, no button, because there is nothing to transact: a reader arrives late, alone, and settles in to read. Every decision serves that one act. Depth is felt, not lit: three barely-separated tonal grounds, hairline rules, and a 3.5%-opacity film grain give the page the texture of paper rather than the flatness of a screen. The whole site speaks in one voice, literally. It is set entirely in Fraunces: roman for prose, small capitals for every piece of metadata. That single-family discipline is the identity. Warmth comes from the type and one rust accent, never from a tinted-cream background or a gradient. The interaction model is a page turn, not a click.",
+    "keyCharacteristics": [
+      "Warm-sepia dark, single lamp, no glow.",
+      "One typeface (Fraunces) doing everything; small caps carry all metadata.",
+      "One accent (Lamplit Rust), used rarely and deliberately.",
+      "Flat by law: depth via tonal grounds, hairlines, and film grain, never shadow.",
+      "Read-only: no buttons, no inputs, no cards. Interaction feels like turning a page.",
+      "Portuguese (pt-BR) long-form, tuned for slow late-night reading."
+    ],
+    "rules": [
+      { "name": "The Ink, Not Glow Rule", "body": "Light-on-dark is ink on coated paper at night. Accent never glows; gradients, neon, and cyan-on-black are forbidden. If a surface emits light instead of reflecting it, it is wrong.", "section": "colors" },
+      { "name": "The One Warmth Rule", "body": "There is exactly one accent, Lamplit Rust, and it appears on a handful of elements per page. Its rarity is the point. Do not spread it to headings, borders, or backgrounds.", "section": "colors" },
+      { "name": "The One Voice Rule", "body": "The entire site is Fraunces. Roman for reading, small caps for metadata. A second family, a mono for code/dev texture, or a sans for UI is forbidden.", "section": "typography" },
+      { "name": "The Settled Reader Rule", "body": "Type is tuned for slow reading, not skimming: long leading, capped measure, generous margins, no all-caps body copy. Small caps are the only capitalized register.", "section": "typography" },
+      { "name": "The Flat Paper Rule", "body": "Surfaces never cast shadows. If depth is needed, step the tonal ground or draw a hairline. A drop shadow would read as a 2014 app card, the failure state.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set everything in Fraunces: roman prose, small-caps metadata. One voice.",
+      "Do keep Lamplit Rust (#b08968) rare: drop cap, hover warm, focus ring, the 404 zero, and nowhere else by reflex.",
+      "Do convey depth with the tonal ground ladder, 1px Hairlines, and the film grain. Flat at rest, always.",
+      "Do style visited links and post titles deliberately (dim to Faded Ink), never the browser purple default.",
+      "Do cap prose at the 680px reading measure (50ch for lyrics) and keep leading long for late-night reading.",
+      "Do keep metadata contrast at AA: Marginalia (#847d6e) on Soft Black is ≈4.77:1; do not dim it further.",
+      "Do make interaction feel like turning a page: hairline underlines, the post-row pad-shift, the emerging arrow, one page-in fade."
+    ],
+    "donts": [
+      "Don't add a second typeface, a mono for code/dev texture, or a sans for UI. The One Voice Rule is the identity.",
+      "Don't let anything glow: no gradients, no neon, no cyan-on-black, no accent-glow. Ink, not light.",
+      "Don't cast a box-shadow. A drop shadow reads as a 2014 app card, the failure state.",
+      "Don't introduce SaaS-onboarding cheer, Medium polish, or generic serif-on-dark literary-blog template moves.",
+      "Don't build cards, buttons, or an infinite-feed. This is a read-only diary; interaction is a page turn, not a click.",
+      "Don't use a side-stripe accent thicker than the 1px blockquote rule. No colored left-borders as decoration.",
+      "Don't set body copy in all caps; small caps are the only capitalized register, and only for short labels."
+    ]
+  }
+}
